@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -26,6 +27,10 @@ public TalonSRX fR;
 public TalonSRX fL;
 public TalonSRX bL;
 public TalonSRX bR;
+public double rightPwr = 0;
+public double leftPwr = 0;
+Joystick driveStick = new Joystick(0);
+
    
   /**
    * This function is run when the robot is first started up and should be
@@ -33,16 +38,14 @@ public TalonSRX bR;
    */
   @Override
   public void robotInit() {
-  Joystick driveStick = new Joystick(0);
   
 
   fR = new TalonSRX(0);
   fL = new TalonSRX(1);
   bL = new TalonSRX(2);
   bR = new TalonSRX(3);
-  int rightPwr = 0;
-  int leftPwr = 0;
   
+    
   
   }
 
@@ -56,7 +59,12 @@ public TalonSRX bR;
    */
   @Override
   public void robotPeriodic() {
-  
+    rightPwr = driveStick.getX() + driveStick.getY(); 
+    leftPwr = driveStick.getY() - driveStick.getX();
+    fR.set(ControlMode.PercentOutput, rightPwr);
+    bR.set(ControlMode.PercentOutput, rightPwr);
+    fL.set(ControlMode.PercentOutput, leftPwr);
+    bL.set(ControlMode.PercentOutput, leftPwr);
   }
 
   /**
