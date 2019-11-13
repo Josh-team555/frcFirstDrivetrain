@@ -6,10 +6,13 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Joystick;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,14 +22,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends IterativeRobot {
-
+public TalonSRX fR;
+public TalonSRX fL;
+public TalonSRX bL;
+public TalonSRX bR;
+   
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
-    
+  Joystick driveStick = new Joystick(0);
+  
+
+  fR = new TalonSRX(0);
+  fL = new TalonSRX(1);
+  bL = new TalonSRX(2);
+  bR = new TalonSRX(3);
+  int rightPwr = 0;
+  int leftPwr = 0;
+  
+  
   }
 
   /**
@@ -39,6 +56,7 @@ public class Robot extends IterativeRobot {
    */
   @Override
   public void robotPeriodic() {
+  
   }
 
   /**
@@ -63,7 +81,7 @@ public class Robot extends IterativeRobot {
   @Override
   public void autonomousPeriodic() {
     
-    }
+    
   }
 
   /**
